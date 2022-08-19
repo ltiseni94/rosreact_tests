@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <node
+        name="camera"
+        pkg="rosreact_tests"
+        type="camera"
+        output="screen"
+    />
+
+    <node
+        name="camera_republisher"
+        pkg="image_transport"
+        type="republish"
+        args="raw in:=/camera/image out:=/camera/streaming"
+    />
+
+    <node
+        name="web_video_server"
+        pkg="web_video_server"
+        type="web_video_server"
+    >
+        <param name="port" type="int" value="8080"/>
+        <param name="address" type="str" value="127.0.0.1"/>
+        <param name="server_threads" type="int" value="2"/>
+        <param name="ros_threads" type="int" value="4"/>
+    </node>
+</launch>

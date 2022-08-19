@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+
+from rosreact_tests.camera import main
+from pathlib import Path
+from json import load
+
+if __name__ == '__main__':
+    config_file = Path(__file__).parent.parent / "config" / "camera.json"
+    with open(config_file, 'r') as f:
+        config = load(f)
+    main(config["driver"])

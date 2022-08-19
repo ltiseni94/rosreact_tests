@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <include file="$(find rosreact_tests)/launch/camera.launch"/>
+
+    <test
+        test-name="camera_publishing_rate"
+        pkg="rostest"
+        type="hztest"
+        name="hztest1"
+    >
+        <param name="topic" value="/camera/image" />
+        <param name="hz" value="22.5" />
+        <param name="hzerror" value="8" />
+        <param name="test_duration" value="5.0" />
+    </test>
+
+    <test
+        test-name="camera_republishing_rate"
+        pkg="rostest"
+        type="hztest"
+        name="hztest2"
+    >
+        <param name="topic" value="/camera/streaming" />
+        <param name="hz" value="22.5" />
+        <param name="hzerror" value="8" />
+        <param name="test_duration" value="5.0" />
+    </test>
+
+    <test
+        test-name="web_video_server_param_test"
+        pkg="rostest"
+        type="paramtest"
+        name="web_video_server_param_test"
+    >
+        <param name="param_name_target" value="/web_video_server/port" />
+        <param name="param_value_expected" value="8080" />
+        <param name="test_duration" value="2.0" />
+        <param name="wait_time" value="10.0" />
+    </test>
+</launch>
